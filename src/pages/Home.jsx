@@ -80,7 +80,7 @@ function Home() {
                         {productDisplay?.products?.map((data) => (
                             <article class="relative flex flex-col overflow-hidden rounded-lg border">
                                 <div class="aspect-square overflow-hidden">
-                                    <Link to={`/${data?.id}`}> <img class="h-full w-full object-cover transition-all duration-300 group-hover:scale-125" src={data.images} alt="product_image" /></Link>
+                                    <Link to={`/product/${data?.id}`}> <img class="h-full w-full object-cover transition-all duration-300 group-hover:scale-125" src={data.images} alt="product_image" /></Link>
                                 </div>
                                 <div class="absolute top-0 m-2 rounded-full bg-white">
                                     <p class="rounded-full bg-emerald-500 p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">Sale</p>
