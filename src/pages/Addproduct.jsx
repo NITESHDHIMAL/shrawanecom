@@ -26,27 +26,7 @@ export default function Addproduct() {
     }
   }
 
-  return (
-    // <form onSubmit={handleSubmit(onSubmit)} className="shadow-md my-6">
-    //   <label htmlFor="">Title</label>
-    //   <input className="border" defaultValue="" {...register("title")} />
-
-
-    //   <label htmlFor="">Price</label>
-    //   <input className="border" {...register("price", { required: true })} />
-    //   {errors.exampleRequired && <span>This field is required</span>}
-
-
-    //   <label htmlFor="">Description</label>
-    //   <input className="border" {...register("description", { required: true })} />
-    //   {errors.exampleRequired && <span>This field is required</span>}
-
-
-    //   <input type="submit" />
-    // </form>
-
-
-
+  return ( 
 
     <form onSubmit={handleSubmit(onSubmit)} class="max-w-sm mx-auto shadow-2xl p-4 m-4 rounded">
       <div class="mb-5">
