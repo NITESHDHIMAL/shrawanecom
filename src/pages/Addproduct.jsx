@@ -17,7 +17,7 @@ export default function Addproduct() {
 
   const onSubmit = async (formData) => {
     try {
-      await postProduct(formData).unwrap;
+      await postProduct(formData).unwrap();
       nav('/')
       toast.success('Product added successfully.')
       console.log(formData)

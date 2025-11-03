@@ -1,6 +1,9 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { useGetProductByCategoryQuery, useGetProductsBySerchQuery, useGetProductsQuery } from "../services/productApi"
 import { useGetCategoryQuery } from "../services/categoryApi";
+import Pagination from "rc-pagination";
+import { useState } from "react";
+import 'rc-pagination/assets/index.css'
 
 
 
@@ -9,6 +12,9 @@ function Home() {
     const {id} = useParams()
     let nav = useNavigate();
     const { search } = useLocation()
+
+    const [page,setPage] = useState(1);
+    const limit = 10;
 
     const { data: product } = useGetProductsQuery(search);
     const { data: serachproduct } = useGetProductsBySerchQuery(search);
@@ -26,6 +32,9 @@ function Home() {
     } else{
         productDisplay = product;
     }
+
+    const total = productDisplay?.total || 0;
+ 
 
     return (
         <>
@@ -74,7 +83,7 @@ function Home() {
                         <option value="desc">Desc</option>
                     </select>
 
-                    <div class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4 lg:mt-16">
+                    <div class="mt-10 mb-4 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4 lg:mt-16">
                         {/* {course.map((data) => (  */}
                         {/* {data?.products?.map((data) => ( */}
                         {productDisplay?.products?.map((data) => (
@@ -99,6 +108,15 @@ function Home() {
                             </article>
                         ))}
                     </div>
+
+
+                        <Pagination
+                        current={page}
+                        onChange={(page) => setPage(page)}
+                        pageSize={limit}
+                        total={total}
+                        />
+
                 </div>
             </section>
         </>

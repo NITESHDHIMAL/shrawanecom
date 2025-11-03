@@ -33,12 +33,6 @@ export const productApi = createApi({
         body: formData
       }),
     }),
-
-
-
-
-
-
   }),
 })
 
