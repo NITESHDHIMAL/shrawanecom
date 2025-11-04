@@ -4,37 +4,42 @@ import { useGetCategoryQuery } from "../services/categoryApi";
 import Pagination from "rc-pagination";
 import { useState } from "react";
 import 'rc-pagination/assets/index.css'
+import Loader from "../components/Loader";
 
 
 
 function Home() {
 
-    const {id} = useParams()
+    const { id } = useParams()
     let nav = useNavigate();
     const { search } = useLocation()
 
-    const [page,setPage] = useState(1);
+    const [page, setPage] = useState(1);
     const limit = 10;
 
-    const { data: product } = useGetProductsQuery(search);
+    const { data: product, isLoading } = useGetProductsQuery({ page, limit });
     const { data: serachproduct } = useGetProductsBySerchQuery(search);
-    const {data: categoryproduct} = useGetProductByCategoryQuery(id)
+    const { data: categoryproduct } = useGetProductByCategoryQuery(id)
 
     const { data: category } = useGetCategoryQuery();
-    console.log("all category", category)
+    console.log("all product", product)
 
     let productDisplay;
 
     if (search && serachproduct) {
         productDisplay = serachproduct;
-    } else if(id && categoryproduct) {
+    } else if (id && categoryproduct) {
         productDisplay = categoryproduct;
-    } else{
+    } else {
         productDisplay = product;
     }
 
     const total = productDisplay?.total || 0;
- 
+
+    if(isLoading){
+        return <Loader/>
+    }
+
 
     return (
         <>
@@ -93,7 +98,7 @@ function Home() {
                                 </div>
                                 <div class="absolute top-0 m-2 rounded-full bg-white">
                                     <p class="rounded-full bg-emerald-500 p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">Sale</p>
-                                </div>
+                                </div>asdfasdf
                                 <div class="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
                                     <div class="mb-2 flex">
                                         <p class="mr-3 text-sm font-semibold">{data.price}</p>
@@ -110,12 +115,13 @@ function Home() {
                     </div>
 
 
-                        <Pagination
+                    <Pagination
                         current={page}
                         onChange={(page) => setPage(page)}
                         pageSize={limit}
                         total={total}
-                        />
+                        showLessItems
+                    />
 
                 </div>
             </section>
