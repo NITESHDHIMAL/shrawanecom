@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <Layout>
-        <ToastContainer/>
+        <ToastContainer autoClose={1000}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Signin />} />
